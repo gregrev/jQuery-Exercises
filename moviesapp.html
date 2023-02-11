@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies App</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        table {
+            justify-content: center;
+            display: flex;
+        }
+
+        th {
+            width: 86.33%;
+            text-align: center;
+            padding: 4em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> MOVIE RATINGS </h1>
+    <form>
+        <input id="title" type="text" placeholder="Movie Title" required>
+        <input id="rating" type="number" max="10" min="0" placeholder="Rating" required>
+        <button type="submit">Leave A Rating!!</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th id="moviecolumn">Movie Title</th>
+                <th id="ratingcolumn">Rating</th>
+                <th id="deletebtn">Delete</th>
+            </tr>
+        </thead>
+    </table>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script>
+        $('form').submit(function (event) {
+            event.preventDefault();
+            let inputTitle = $('#title').val();
+            let inputRating = $('#rating').val();
+
+            $('#moviecolumn').append($('<tr>').append($('<td>', { text: `${inputTitle}` })));
+            $('#ratingcolumn').append($('<tr>').append($('<td>', { text: `${inputRating}/10` })));
+            $('#deletebtn').append($('<button>', { text: 'DELETE!' }).on('click', function () {
+                $('#moviecolumn tr:last-child, #ratingcolumn tr:last-child').remove();
+                $(this).remove();
+            }));
+        });
+
+    </script>
+</body>
+
+</html>
